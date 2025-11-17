@@ -13,7 +13,7 @@ const CarEvaluationForm = dynamic(() => import('@/components/CarEvaluationForm')
 });
 
 export const metadata: Metadata = genMeta({
-  title: 'Выкуп битых автомобилей | Выкуп аварийных авто Москва',
+  title: 'Выкуп битых авто | Аварийные автомобили | Москва',
   description:
     'Выкуп битых и аварийных автомобилей в Москве и МО. Выкупаем авто с любыми повреждениями. Оценка остаточной стоимости, честная цена. Звоните: 89857520001',
   keywords:

@@ -3,7 +3,7 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import CarBrandsClient from './CarBrandsClient';
 
 export const metadata: Metadata = genMeta({
-  title: 'Марки автомобилей | Выкуп всех марок авто Москва',
+  title: 'Марки автомобилей | Выкуп всех марок | Москва и МО',
   description:
     'Выкупаем автомобили всех популярных марок: Toyota, Mercedes-Benz, BMW, Audi, Volkswagen и другие. От бюджетных до премиум класса. Найдите свою марку и узнайте примеры моделей.',
   keywords:

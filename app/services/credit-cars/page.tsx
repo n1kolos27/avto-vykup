@@ -13,7 +13,7 @@ const CarEvaluationForm = dynamic(() => import('@/components/CarEvaluationForm')
 });
 
 export const metadata: Metadata = genMeta({
-  title: 'Выкуп кредитных автомобилей | Выкуп авто в залоге Москва',
+  title: 'Выкуп кредитных авто | Авто в залоге | Москва',
   description:
     'Выкуп кредитных автомобилей в Москве и МО. Помогаем с выкупом авто в залоге у банков. Оформление перевода долга, помощь с документами. Звоните: 89857520001',
   keywords:
