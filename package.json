@@ -2,6 +2,7 @@
   "name": "avto-vykup",
   "version": "1.0.0",
   "private": true,
+  "description": "Выкуп авто - Сайт для выкупа автомобилей в Москве и МО. Next.js 14, TypeScript, оптимизирован для ТОП-1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
