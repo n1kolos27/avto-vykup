@@ -1,6 +1,6 @@
 /**
  * SEO System - Schema.org Generation
- * 
+ *
  * Генерация структурированных данных Schema.org
  */
 
@@ -8,7 +8,7 @@ import { APP_CONFIG } from '@/lib/config';
 
 const domain = APP_CONFIG.DOMAIN;
 const phone1 = APP_CONFIG.PHONE_1;
-const phone2 = APP_CONFIG.PHONE_2;
+// phone2 не используется
 
 /**
  * Генерация Organization Schema
@@ -117,4 +117,3 @@ export function generateWebSiteSchema() {
     },
   };
 }
-

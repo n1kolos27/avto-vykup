@@ -9,20 +9,20 @@ export default function Footer() {
   const phone1 = APP_CONFIG.PHONE_1;
   const phone2 = APP_CONFIG.PHONE_2;
   const email = APP_CONFIG.EMAIL;
-  const domain = APP_CONFIG.DOMAIN;
   const navItems = FOOTER_NAV_ITEMS;
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-white" role="contentinfo">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          <motion.div
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            aria-labelledby="footer-about-heading"
           >
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 id="footer-about-heading" className="text-2xl font-bold mb-4">
               <span className="bg-gradient-to-br from-primary-600 to-primary-700 px-4 py-2 rounded-lg shadow-lg inline-block">
                 ТОП-1
               </span>
@@ -31,16 +31,17 @@ export default function Footer() {
               Профессиональный выкуп автомобилей в Москве и Московской области.
               Быстро, честно, выгодно.
             </p>
-          </motion.div>
+          </motion.section>
 
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            aria-labelledby="footer-nav-heading"
           >
-            <h4 className="text-lg font-semibold mb-6 text-white">Навигация</h4>
-            <ul className="space-y-3">
+            <h4 id="footer-nav-heading" className="text-lg font-semibold mb-6 text-white">Навигация</h4>
+            <ul className="space-y-3" role="list">
               {navItems.map((item, index) => (
                 <motion.li
                   key={item.href}
@@ -48,10 +49,12 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
+                  role="listitem"
                 >
                   <Link
                     href={item.href}
-                    className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group"
+                    className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
+                    aria-label={`Перейти на страницу: ${item.label}`}
                   >
                     <span className="group-hover:text-primary-400">{item.label}</span>
                   </Link>
@@ -62,69 +65,75 @@ export default function Footer() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.1 + navItems.length * 0.05 }}
+                role="listitem"
               >
                 <Link
                   href="/sitemap-page"
-                  className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group"
+                  className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
+                  aria-label="Перейти на страницу: Карта сайта"
                 >
                   <span className="group-hover:text-primary-400">Карта сайта</span>
                 </Link>
               </motion.li>
             </ul>
-          </motion.div>
+          </motion.nav>
 
-          <motion.div
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            aria-labelledby="footer-contacts-heading"
           >
-            <h4 className="text-lg font-semibold mb-6 text-white">Контакты</h4>
-            <ul className="space-y-4">
-                     <li>
+            <h4 id="footer-contacts-heading" className="text-lg font-semibold mb-6 text-white">Контакты</h4>
+            <ul className="space-y-4" role="list">
+                     <li role="listitem">
                        <motion.a
                          href={`tel:${phone1}`}
-                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group"
+                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
                          whileHover={{ x: 4 }}
+                         aria-label={`Позвонить по телефону ${phone1}`}
                        >
-                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors">
-                           <FiPhone className="text-primary-400" />
+                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors" aria-hidden="true">
+                           <FiPhone className="text-primary-400" aria-hidden="true" />
                          </div>
                          <address className="not-italic font-medium">{phone1}</address>
                        </motion.a>
                      </li>
-                     <li>
+                     <li role="listitem">
                        <motion.a
                          href={`tel:${phone2}`}
-                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group"
+                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
                          whileHover={{ x: 4 }}
+                         aria-label={`Позвонить по телефону ${phone2}`}
                        >
-                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors">
-                           <FiPhone className="text-primary-400" />
+                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors" aria-hidden="true">
+                           <FiPhone className="text-primary-400" aria-hidden="true" />
                          </div>
                          <address className="not-italic font-medium">{phone2}</address>
                        </motion.a>
                      </li>
-                     <li>
+                     <li role="listitem">
                        <motion.a
                          href={`mailto:${email}`}
-                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group"
+                         className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
                          whileHover={{ x: 4 }}
+                         aria-label={`Написать письмо на ${email}`}
                        >
-                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors">
-                           <FiMail className="text-primary-400" />
+                         <div className="bg-primary-600/20 p-2 rounded-lg group-hover:bg-primary-600/30 transition-colors" aria-hidden="true">
+                           <FiMail className="text-primary-400" aria-hidden="true" />
                          </div>
                          <address className="not-italic font-medium break-all">{email}</address>
                        </motion.a>
                      </li>
-                     <li className="flex items-start space-x-3 text-gray-300">
-                       <div className="bg-primary-600/20 p-2 rounded-lg mt-1">
-                         <FiMapPin className="text-primary-400" />
+                     <li className="flex items-start space-x-3 text-gray-300" role="listitem">
+                       <div className="bg-primary-600/20 p-2 rounded-lg mt-1" aria-hidden="true">
+                         <FiMapPin className="text-primary-400" aria-hidden="true" />
                        </div>
                        <address className="not-italic">Москва и Московская область</address>
                      </li>
             </ul>
-          </motion.div>
+          </motion.section>
         </div>
 
         <motion.div
@@ -142,4 +151,3 @@ export default function Footer() {
     </footer>
   );
 }
-

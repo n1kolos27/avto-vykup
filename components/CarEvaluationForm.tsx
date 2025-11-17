@@ -80,7 +80,6 @@ export default function CarEvaluationForm() {
   const watchedMileage = watch('mileage');
   const watchedCondition = watch('condition');
   const watchedPhone = watch('phone');
-  const watchedName = watch('name');
 
   // Calculate form progress
   const formProgress = useMemo(() => {

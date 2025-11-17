@@ -1,0 +1,29 @@
+
+ОТЧЕТ ПРОВЕРКИ SEO ОПТИМИЗАЦИИ
+================================
+Дата: 17.11.2025, 12:09:15
+
+ИЗОБРАЖЕНИЯ:
+✓ Все изображения присутствуют
+
+SEO ФАЙЛЫ:
+✗ Отсутствует 1 файлов:
+  - app/robots.txt
+
+LAYOUT ПРОВЕРКА:
+✓ Все проверки пройдены
+
+МЕТАДАННЫЕ:
+✓ Файл метаданных найден
+
+СЛЕДУЮЩИЕ ШАГИ:
+1. Создайте отсутствующие изображения (см. public/README-IMAGES.md)
+2. Проверьте Schema.org через Google Rich Results Test
+3. Проверьте Open Graph через Facebook Sharing Debugger
+4. Отправьте sitemap в Google Search Console и Yandex Webmaster
+
+ИНСТРУКЦИИ:
+- Google Rich Results Test: https://search.google.com/test/rich-results
+- Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/
+- Google Search Console: https://search.google.com/search-console
+- Yandex Webmaster: https://webmaster.yandex.ru/

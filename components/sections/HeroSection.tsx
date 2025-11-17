@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import PhoneButton from '../PhoneButton';
 import { FiArrowDown, FiCheck, FiAward, FiShield, FiTrendingUp } from 'react-icons/fi';
 import { APP_CONFIG } from '@/lib/config';
@@ -14,9 +13,15 @@ import { useABTest, trackABTestConversion } from '@/lib/ab-testing';
  */
 function HeroSection() {
   const phone1 = APP_CONFIG.PHONE_1;
-  
-  // A/B тест для CTA кнопки (используем useState для правильной работы в React)
-  const [ctaVariant] = useState(() => useABTest('hero_cta', ['A', 'B']));
+
+  // A/B тест для CTA кнопки - используем useState для предотвращения hydration error
+  const [ctaVariant, setCtaVariant] = useState<'A' | 'B'>('A');
+  const abTestVariant = useABTest('hero_cta', ['A', 'B']);
+
+  // Применяем A/B тест только на клиенте после hydration
+  useEffect(() => {
+    setCtaVariant(abTestVariant);
+  }, [abTestVariant]);
 
   const features = useMemo(() => [
     'Оценка за 5 минут',
@@ -38,12 +43,12 @@ function HeroSection() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-pulse"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-pulse [animation-delay:1s]"></div>
       <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-primary-300/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse [animation-delay:0.5s]"></div>
-      
+
       {/* Optional background image placeholder - can be replaced with actual image */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMTBsMjAgNDBMMTAwIDUwTDUwIDkwTDAgNTBsMzAtNDB6IiBmaWxsPSIjMDI4NGM3IiBmaWxsLW9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] bg-repeat"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl">
           <motion.div
@@ -56,7 +61,7 @@ function HeroSection() {
               Выкуп авто в Москве и МО
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,7 +70,7 @@ function HeroSection() {
           >
             Выкуп Авто Москва — ТОП-1 ⚡ Срочный Выкуп за 2 часа
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +80,7 @@ function HeroSection() {
             Быстрая оценка, честная цена, моментальная оплата. Продайте свой
             автомобиль за один день!
           </motion.p>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,7 +89,7 @@ function HeroSection() {
           >
             ⚡ Оценка за 5 минут - бесплатно | 💰 Честная рыночная цена | ✅ Оплата сразу
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,8 +100,8 @@ function HeroSection() {
               href="#evaluation"
               onClick={() => trackABTestConversion('hero_cta', ctaVariant, 'click', 1)}
               className={`flex items-center justify-center space-x-2 px-8 py-4 md:px-10 md:py-5 rounded-xl font-bold text-lg md:text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 min-h-[56px] md:min-h-[64px] group relative overflow-hidden ${
-                ctaVariant === 'B' 
-                  ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white' 
+                ctaVariant === 'B'
+                  ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white'
                   : 'bg-white text-primary-600'
               }`}
               whileHover={{ scale: 1.05, y: -2 }}
@@ -122,7 +127,7 @@ function HeroSection() {
             </motion.a>
             <PhoneButton phone={phone1} variant="secondary" />
           </motion.div>
-          
+
           {/* Social Proof - Recent Activity */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -148,7 +153,7 @@ function HeroSection() {
               <span className="font-medium">Среднее время ответа: 2 минуты</span>
             </div>
           </motion.div>
-          
+
           {/* Trust Badges */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -172,7 +177,7 @@ function HeroSection() {
               );
             })}
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

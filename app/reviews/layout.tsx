@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
-import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = genMeta({
   title: 'Отзывы клиентов | Реальные отзывы о выкупе авто',
@@ -104,6 +104,7 @@ const reviewsSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Выкуп авто | Московский Авто Альянс',
+  url: baseUrl,
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5',

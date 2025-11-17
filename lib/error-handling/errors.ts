@@ -1,11 +1,11 @@
 /**
  * Error Handling System - Error Creation
- * 
+ *
  * Функции для создания структурированных ошибок
  */
 
 import type { AppError, ErrorContext, ErrorCategory, ErrorSeverity } from './types';
-import { ENV } from '@/lib/config';
+// ENV не используется, удален импорт
 
 /**
  * Создание структурированной ошибки
@@ -182,13 +182,12 @@ export function classifyError(error: AppError): {
   if (statusCode === 401 || statusCode === 403) severity = 'medium';
 
   // Определяем, можно ли повторить запрос
-  const retryable = 
-    statusCode >= 500 || 
-    statusCode === 408 || 
+  const retryable =
+    statusCode >= 500 ||
+    statusCode === 408 ||
     statusCode === 429 ||
     category === 'network_error' ||
     category === 'external_service_error';
 
   return { category, severity, retryable };
 }
-

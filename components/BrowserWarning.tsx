@@ -23,6 +23,38 @@ export default function BrowserWarning() {
     setIsMounted(true);
   }, []);
 
+  // Получаем ссылки для скачивания браузера
+  const downloadLink = React.useMemo(() => {
+    if (!isMounted || browserInfo.name === 'unknown') {
+      return null;
+    }
+
+    const downloadLinks: Record<string, { name: string; url: string }> = {
+      chrome: {
+        name: 'Google Chrome',
+        url: 'https://www.google.com/chrome/',
+      },
+      firefox: {
+        name: 'Mozilla Firefox',
+        url: 'https://www.mozilla.org/firefox/',
+      },
+      edge: {
+        name: 'Microsoft Edge',
+        url: 'https://www.microsoft.com/edge',
+      },
+      safari: {
+        name: 'Safari',
+        url: 'https://www.apple.com/safari/',
+      },
+      opera: {
+        name: 'Opera',
+        url: 'https://www.opera.com/',
+      },
+    };
+
+    return downloadLinks[browserInfo.name as keyof typeof downloadLinks] || null;
+  }, [isMounted, browserInfo.name]);
+
   useEffect(() => {
     // Показываем только после монтирования и только для устаревших браузеров
     if (!isMounted) return;
@@ -38,15 +70,6 @@ export default function BrowserWarning() {
     }
   }, [isOutdated, isDismissed, isMounted]);
 
-  // Не рендерим ничего до монтирования (избегаем hydration error)
-  if (!isMounted) {
-    return null;
-  }
-
-  if (!isVisible || !isOutdated) {
-    return null;
-  }
-
   const handleDismiss = () => {
     setIsVisible(false);
     setIsDismissed(true);
@@ -57,37 +80,14 @@ export default function BrowserWarning() {
     }
   };
 
-  // Получаем ссылки для скачивания браузера (только после монтирования)
-  const downloadLink = React.useMemo(() => {
-    if (!isMounted || browserInfo.name === 'unknown') {
-      return null;
-    }
+  // Не рендерим ничего до монтирования (избегаем hydration error)
+  if (!isMounted) {
+    return null;
+  }
 
-    const links: Record<string, { name: string; url: string }> = {
-      chrome: {
-        name: 'Google Chrome',
-        url: 'https://www.google.com/chrome/',
-      },
-      firefox: {
-        name: 'Mozilla Firefox',
-        url: 'https://www.mozilla.org/firefox/',
-      },
-      safari: {
-        name: 'Safari',
-        url: 'https://www.apple.com/safari/',
-      },
-      edge: {
-        name: 'Microsoft Edge',
-        url: 'https://www.microsoft.com/edge',
-      },
-      opera: {
-        name: 'Opera',
-        url: 'https://www.opera.com/',
-      },
-    };
-
-    return links[browserInfo.name] || null;
-  }, [isMounted, browserInfo.name]);
+  if (!isVisible || !isOutdated) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

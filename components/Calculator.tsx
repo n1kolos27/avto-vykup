@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiDollarSign, FiInfo } from 'react-icons/fi';
@@ -42,31 +42,17 @@ export default function Calculator() {
 
   const formData = watch();
 
-  // Базовая стоимость (примерная, можно заменить на реальные данные)
-  const basePrices: Record<string, number> = {
-    toyota: 1500000,
-    bmw: 2000000,
-    mercedes: 2200000,
-    audi: 2100000,
-    volkswagen: 1200000,
-    default: 1000000,
-  };
+  const calculatePrice = useCallback(() => {
+    // Базовая стоимость (примерная, можно заменить на реальные данные)
+    const basePrices: Record<string, number> = {
+      toyota: 1500000,
+      bmw: 2000000,
+      mercedes: 2200000,
+      audi: 2100000,
+      volkswagen: 1200000,
+      default: 1000000,
+    };
 
-  useEffect(() => {
-    if (
-      formData.brand &&
-      formData.model &&
-      formData.year &&
-      formData.mileage !== undefined &&
-      formData.condition
-    ) {
-      calculatePrice();
-    } else {
-      setResult(null);
-    }
-  }, [formData]);
-
-  const calculatePrice = () => {
     const brand = formData.brand.toLowerCase();
     const basePrice =
       basePrices[brand] || basePrices[Object.keys(basePrices).find((k) => brand.includes(k)) || 'default'] || basePrices.default;
@@ -99,7 +85,21 @@ export default function Calculator() {
       ageMultiplier,
       finalPrice,
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    if (
+      formData.brand &&
+      formData.model &&
+      formData.year &&
+      formData.mileage !== undefined &&
+      formData.condition
+    ) {
+      calculatePrice();
+    } else {
+      setResult(null);
+    }
+  }, [formData, calculatePrice]);
 
   const conditions = [
     { value: 'excellent', label: 'Отличное' },
@@ -369,7 +369,7 @@ export default function Calculator() {
                         <span className="text-gray-600">Базовая стоимость:</span>
                         <span className="font-semibold text-gray-800">{result.basePrice.toLocaleString('ru-RU')} ₽</span>
                       </div>
-                      
+
                       <div>
                         <div className="flex justify-between mb-2">
                           <span className="text-gray-600">Состояние:</span>
@@ -384,7 +384,7 @@ export default function Calculator() {
                           ></motion.div>
                         </div>
                       </div>
-                      
+
                       <div>
                         <div className="flex justify-between mb-2">
                           <span className="text-gray-600">Пробег:</span>
@@ -399,7 +399,7 @@ export default function Calculator() {
                           ></motion.div>
                         </div>
                       </div>
-                      
+
                       <div>
                         <div className="flex justify-between mb-2">
                           <span className="text-gray-600">Возраст:</span>
@@ -414,7 +414,7 @@ export default function Calculator() {
                           ></motion.div>
                         </div>
                       </div>
-                      
+
                       <div className="border-t border-primary-200 pt-4 flex justify-between font-semibold text-base">
                         <span className="text-gray-800">Итоговая стоимость:</span>
                         <span className="text-primary-600">{result.finalPrice.toLocaleString('ru-RU')} ₽</span>
@@ -460,4 +460,3 @@ export default function Calculator() {
     </motion.div>
   );
 }
-

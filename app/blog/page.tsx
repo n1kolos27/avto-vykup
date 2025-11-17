@@ -3,6 +3,7 @@ import BlogCard from '@/components/BlogCard';
 import AnimatedSection from '@/components/AnimatedSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
   title: 'Блог о выкупе автомобилей | Полезные статьи и советы',
@@ -11,6 +12,7 @@ export const metadata: Metadata = genMeta({
   keywords:
     'блог выкуп авто, статьи о выкупе, советы по продаже авто, новости автомобильного рынка, как продать авто, информация о выкупе',
   path: '/blog',
+  type: 'website',
 });
 
 const blogPosts = [
@@ -152,9 +154,40 @@ const blogPosts = [
   },
 ];
 
+const baseUrl = APP_CONFIG.BASE_URL;
+
+const blogPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Блог о выкупе автомобилей',
+  description: 'Полезные статьи о выкупе автомобилей, советы по продаже авто, новости автомобильного рынка',
+  url: `${baseUrl}/blog`,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: blogPosts.length,
+    itemListElement: blogPosts.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Article',
+        name: post.title,
+        description: post.excerpt,
+        url: `${baseUrl}/blog/${post.slug}`,
+        datePublished: post.date,
+        articleSection: post.category,
+      },
+    })),
+  },
+};
+
 export default function BlogPage() {
   return (
-    <div className="py-16 md:py-24 bg-gray-50">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
+      />
+      <div className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <Breadcrumbs className="mb-6" />
@@ -175,5 +208,6 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

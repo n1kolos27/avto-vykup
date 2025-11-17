@@ -1,6 +1,6 @@
 /**
  * Error Handling System - Logger
- * 
+ *
  * Структурированное логирование ошибок
  */
 
@@ -46,7 +46,7 @@ export function logError(
   if (ENV.NODE_ENV === 'production') {
     // В production логируем структурированно (JSON)
     console.error('Application error:', JSON.stringify(errorInfo, null, 2));
-    
+
     // Здесь можно добавить отправку в Sentry или другой мониторинг
     if (monitoringConfig.enabled) {
       sendToMonitoring(errorInfo);
@@ -66,7 +66,7 @@ function buildErrorLogInfo(
   additionalInfo?: Record<string, unknown>
 ): ErrorLogInfo {
   const appError = error as AppError;
-  
+
   return {
     message: error instanceof Error ? error.message : 'Unknown error',
     stack: error instanceof Error ? error.stack : undefined,
@@ -86,7 +86,7 @@ function buildErrorLogInfo(
 /**
  * Отправка ошибки в систему мониторинга (Sentry-ready)
  */
-function sendToMonitoring(errorInfo: ErrorLogInfo): void {
+function sendToMonitoring(_errorInfo: ErrorLogInfo): void {
   // Готовность к интеграции с Sentry
   // if (monitoringConfig.sentryDsn) {
   //   Sentry.captureException(errorInfo);
@@ -108,7 +108,7 @@ export function logCriticalError(
   });
 
   console.error('CRITICAL ERROR:', JSON.stringify(errorInfo, null, 2));
-  
+
   if (monitoringConfig.enabled) {
     sendToMonitoring(errorInfo);
   }
@@ -136,4 +136,3 @@ export function logWarning(
     console.warn('Application warning:', warningInfo);
   }
 }
-

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiDollarSign, FiClock, FiCheckCircle, FiFilter } from 'react-icons/fi';
+import { FiDollarSign, FiClock, FiCheckCircle } from 'react-icons/fi';
 
 const cases = [
   {
@@ -101,8 +101,8 @@ const categories = [
 export default function CasesSection() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const filteredCases = selectedCategory === 'all' 
-    ? cases 
+  const filteredCases = selectedCategory === 'all'
+    ? cases
     : cases.filter(c => c.category === selectedCategory);
 
   return (
@@ -165,7 +165,7 @@ export default function CasesSection() {
               >
                 <h3 className="text-xl font-bold text-gray-800 mb-3">{caseItem.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-3">{caseItem.description}</p>
-                
+
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center space-x-2 text-primary-600">
                     <FiDollarSign className="flex-shrink-0" />
@@ -199,4 +199,3 @@ export default function CasesSection() {
     </section>
   );
 }
-

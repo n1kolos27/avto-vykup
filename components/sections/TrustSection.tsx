@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FiAward, FiShield, FiFileText, FiCheckCircle, FiTrendingUp, FiUsers } from 'react-icons/fi';
+import { FiAward, FiShield, FiFileText, FiCheckCircle } from 'react-icons/fi';
 
 const trustItems = [
   {
@@ -115,4 +115,3 @@ export default function TrustSection() {
     </section>
   );
 }
-

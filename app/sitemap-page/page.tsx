@@ -1,17 +1,28 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { generateMetadata } from '@/lib/seo/metadata';
-import { MAIN_NAV_ITEMS, FOOTER_NAV_ITEMS } from '@/lib/config';
+import { MAIN_NAV_ITEMS, APP_CONFIG } from '@/lib/config';
 import { FiHome, FiFileText, FiHelpCircle, FiDollarSign, FiPhone, FiMail } from 'react-icons/fi';
 
-const baseMetadata = generateMetadata({
+export const metadata: Metadata = generateMetadata({
   title: 'Карта сайта - Выкуп авто',
-  description: 'Карта сайта Выкуп авто. Все страницы и разделы сайта по выкупу автомобилей в Москве и МО.',
+  description: 'Карта сайта Выкуп авто. Все страницы и разделы сайта по выкупу автомобилей в Москве и МО. Навигация по всем разделам: услуги, информация, блог, контакты.',
+  keywords: 'карта сайта, навигация, все страницы, разделы сайта, выкуп авто, структура сайта',
   path: '/sitemap-page',
 });
 
-export const metadata: Metadata = {
-  ...baseMetadata,
+const baseUrl = APP_CONFIG.BASE_URL;
+
+const sitemapPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Карта сайта Выкуп авто',
+  description: 'Карта сайта со всеми страницами и разделами',
+  url: `${baseUrl}/sitemap-page`,
+  mainEntity: {
+    '@type': 'SiteNavigationElement',
+    name: 'Навигация сайта',
+  },
 };
 
 // Blog posts slugs (примерный список)
@@ -38,7 +49,12 @@ const blogSlugs = [
 
 export default function SitemapPage() {
   return (
-    <div className="py-16 md:py-24 bg-gray-50">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sitemapPageSchema) }}
+      />
+      <div className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -197,6 +213,6 @@ export default function SitemapPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
-

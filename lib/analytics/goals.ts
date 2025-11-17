@@ -1,11 +1,11 @@
 /**
  * Analytics System - Goals Tracking
- * 
+ *
  * Отслеживание целей и KPI
  */
 
 import { trackEvent } from './google-analytics';
-import { trackEventYandex } from './yandex-metrika';
+// trackEventYandex не используется, удален импорт
 
 export type GoalType =
   | 'phone_call'
@@ -100,4 +100,3 @@ export const Goals = {
     metadata: { button: buttonName, location },
   }),
 } as const;
-

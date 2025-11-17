@@ -1,11 +1,31 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Calculator from '@/components/Calculator';
-import CarEvaluationForm from '@/components/CarEvaluationForm';
-import PriceFactors from '@/components/PriceFactors';
-import PreparationTips from '@/components/PreparationTips';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+
+// Lazy load components below the fold for better performance
+const CarEvaluationForm = dynamic(() => import('@/components/CarEvaluationForm'), {
+  loading: () => (
+    <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="h-8 bg-gray-200 rounded w-3/4 mb-6 animate-pulse" />
+      <div className="space-y-4">
+        <div className="h-12 bg-gray-200 rounded animate-pulse" />
+        <div className="h-12 bg-gray-200 rounded animate-pulse" />
+        <div className="h-12 bg-gray-200 rounded animate-pulse" />
+      </div>
+    </div>
+  ),
+});
+
+const PriceFactors = dynamic(() => import('@/components/PriceFactors'), {
+  loading: () => <div className="h-96 bg-gray-50 animate-pulse rounded-lg" />,
+});
+
+const PreparationTips = dynamic(() => import('@/components/PreparationTips'), {
+  loading: () => <div className="h-96 bg-white animate-pulse rounded-lg" />,
+});
 
 export const metadata: Metadata = genMeta({
   title: 'Калькулятор стоимости автомобиля | Онлайн расчет цены',
@@ -71,16 +91,18 @@ export default function CalculatorPage() {
             </p>
           </div>
 
-          <Calculator />
+          <section aria-labelledby="calculator-heading">
+            <Calculator />
+          </section>
 
-          <div className="mt-16 space-y-12">
+          <section className="mt-16 space-y-12" aria-label="Дополнительная информация">
             <PriceFactors />
             <PreparationTips />
-          </div>
+          </section>
 
-          <div id="contact-form" className="mt-16">
+          <section id="contact-form" className="mt-16" aria-labelledby="contact-form-heading">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 id="contact-form-heading" className="text-3xl font-bold text-gray-800 mb-4">
                 Получите точную оценку
               </h2>
               <p className="text-lg text-gray-600">
@@ -88,7 +110,7 @@ export default function CalculatorPage() {
               </p>
             </div>
             <CarEvaluationForm />
-          </div>
+          </section>
         </div>
       </div>
     </div>

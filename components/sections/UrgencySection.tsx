@@ -1,17 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FiClock, FiUsers, FiAlertCircle } from 'react-icons/fi';
-import PhoneButton from '../PhoneButton';
-import Link from 'next/link';
 import { APP_CONFIG } from '@/lib/config';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { FiAlertCircle, FiClock, FiUsers } from 'react-icons/fi';
+import PhoneButton from '../PhoneButton';
 
 export default function UrgencySection() {
   const phone1 = APP_CONFIG.PHONE_1;
-  
+
   // Mock data - in real app, this would come from API
-  const [slotsLeft, setSlotsLeft] = useState(3);
+  const [slotsLeft] = useState(3);
   const [timeLeft, setTimeLeft] = useState({
     hours: 2,
     minutes: 30,
@@ -147,4 +147,3 @@ export default function UrgencySection() {
     </section>
   );
 }
-

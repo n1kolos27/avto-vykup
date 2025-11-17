@@ -1,8 +1,8 @@
 /**
  * Rate Limiting System - Redis Store
- * 
+ *
  * Redis хранилище для rate limiting (готовность к масштабированию)
- * 
+ *
  * Примечание: Реализация будет добавлена при необходимости использования Redis
  */
 
@@ -28,8 +28,8 @@ export function initRedis(config: RedisRateLimitConfig): void {
  * Rate limiting с использованием Redis (для будущего использования)
  */
 export async function rateLimitRedis(
-  identifier: string,
-  options: RateLimitOptions
+  _identifier: string,
+  _options: RateLimitOptions
 ): Promise<RateLimitResult> {
   if (!redisConfig.enabled) {
     throw new Error('Redis rate limiting is not enabled');
@@ -45,4 +45,3 @@ export async function rateLimitRedis(
 
   throw new Error('Redis rate limiting not implemented yet');
 }
-

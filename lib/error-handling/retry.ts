@@ -1,10 +1,10 @@
 /**
  * Error Handling System - Retry Logic
- * 
+ *
  * Логика повторных попыток для операций
  */
 
-import type { AppError } from './types';
+// AppError не используется, удален импорт
 import { isExpectedError } from './handlers';
 
 /**
@@ -49,11 +49,9 @@ export async function retryOperation<T>(
   } = options;
 
   let lastError: unknown;
-  let attempts = 0;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    attempts = attempt;
-    
+
     try {
       const result = await operation();
       return result;
@@ -126,4 +124,3 @@ export async function retryOperationWithTimeout<T>(
     ),
   ]);
 }
-

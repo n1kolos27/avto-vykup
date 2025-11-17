@@ -21,7 +21,7 @@ export default function SectionCTA({
   title = 'Готовы продать свой автомобиль?',
   description = 'Получите бесплатную оценку прямо сейчас',
   primaryText = 'Оценить авто онлайн',
-  secondaryText = 'Позвонить нам',
+  secondaryText: _secondaryText = 'Позвонить нам',
   primaryAction = 'form',
   customHref,
   variant = 'primary',

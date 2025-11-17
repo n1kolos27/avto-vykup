@@ -29,8 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
   const lastMonth = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-  const ogImage = `${baseUrl}/og-image.png`;
-  const logoImage = `${baseUrl}/logo.png`;
+  // ogImage и logoImage не используются в sitemap
 
   const mainPages: MetadataRoute.Sitemap = [
     {
@@ -128,5 +127,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...mainPages, ...blogPages];
 }
-
-

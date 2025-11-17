@@ -126,7 +126,7 @@ function detectOSVersion(userAgent: string, os: OSName): string {
 /**
  * Определение типа устройства
  */
-function detectDeviceType(userAgent: string, platform: string): DeviceType {
+function detectDeviceType(userAgent: string, _platform: string): DeviceType {
   if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
     return 'tablet';
   }

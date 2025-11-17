@@ -1,6 +1,6 @@
 /**
  * Email System - Email Sender
- * 
+ *
  * Отправка email через различные сервисы
  */
 
@@ -16,10 +16,11 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
   try {
     const emailService = ENV.EMAIL_SERVICE_URL;
     const emailServiceKey = ENV.EMAIL_SERVICE_API_KEY;
-    
+
     // Если нет настроенного email сервиса, логируем и возвращаем success в dev
     if (!emailServiceKey) {
       if (ENV.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
         console.log('Email service not configured. Email data:', {
           to: data.to,
           subject: data.subject,
@@ -67,8 +68,9 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
       }
 
       const processingTime = Date.now() - startTime;
-      
+
       if (ENV.NODE_ENV === 'production') {
+        // eslint-disable-next-line no-console
         console.log('Email sent successfully', {
           to: data.to,
           subject: data.subject,
@@ -84,9 +86,9 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
     }
   } catch (error) {
     const processingTime = Date.now() - startTime;
-    
+
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    
+
     console.error('Error sending email:', {
       error: errorMessage,
       to: data.to,
@@ -100,4 +102,3 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
     };
   }
 }
-

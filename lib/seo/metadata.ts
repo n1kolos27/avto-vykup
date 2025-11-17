@@ -1,6 +1,6 @@
 /**
  * SEO System - Metadata Generation
- * 
+ *
  * Генерация мета-тегов для Next.js
  */
 
@@ -13,7 +13,7 @@ import type { SEOConfig } from '@/lib/types';
  */
 function getValidBaseUrl(): string {
   const baseUrl = APP_CONFIG.BASE_URL || 'http://localhost:3000';
-  
+
   // Проверяем, что URL валиден
   try {
     new URL(baseUrl);
@@ -71,47 +71,49 @@ export function generateMetadata(config: SEOConfig): Metadata {
       alternates: {
         canonical: url,
       },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url,
-      siteName,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      locale: 'ru_RU',
-      type,
-      ...(publishedTime && { publishedTime }),
-      ...(modifiedTime && { modifiedTime }),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: fullTitle,
-      description,
-      images: [image],
-      creator: '@avtovykup',
-    },
-    robots: {
-      index: !noindex,
-      follow: !noindex,
-      googleBot: {
+      openGraph: {
+        title: fullTitle,
+        description,
+        url,
+        siteName,
+        images: [
+          {
+            url: image,
+            width: 1200,
+            height: 630,
+            alt: title,
+            type: 'image/png',
+          },
+        ],
+        locale: 'ru_RU',
+        type,
+        ...(publishedTime && { publishedTime }),
+        ...(modifiedTime && { modifiedTime }),
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: fullTitle,
+        description,
+        images: [image],
+        creator: '@avtovykup',
+        site: '@avtovykup',
+      },
+      robots: {
         index: !noindex,
         follow: !noindex,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        googleBot: {
+          index: !noindex,
+          follow: !noindex,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
       },
-    },
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
+      formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+      },
     };
   } catch (error) {
     // В случае ошибки возвращаем минимальные метаданные
@@ -123,4 +125,3 @@ export function generateMetadata(config: SEOConfig): Metadata {
     };
   }
 }
-

@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import { APP_CONFIG } from '@/lib/config';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -42,4 +41,3 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: '/',
   };
 }
-

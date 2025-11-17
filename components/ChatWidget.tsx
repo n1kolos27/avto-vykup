@@ -15,7 +15,7 @@ export default function ChatWidget() {
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
   const phone1 = APP_CONFIG.PHONE_1;
-  const phone2 = APP_CONFIG.PHONE_2;
+  // phone2 не используется
 
   const handleOpen = () => {
     setIsOpen(true);

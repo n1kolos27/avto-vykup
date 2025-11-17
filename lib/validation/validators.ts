@@ -1,10 +1,10 @@
 /**
  * Validation System - Validators
- * 
+ *
  * Валидаторы для различных типов данных
  */
 
-import type { ValidationError, ValidationContext } from './types';
+import type { ValidationError } from './types';
 import { VALIDATION } from '@/lib/config';
 
 /**
@@ -155,7 +155,7 @@ export function validateCondition(
   condition: string
 ): condition is 'excellent' | 'good' | 'satisfactory' | 'needs_repair' {
   const validConditions: readonly string[] = ['excellent', 'good', 'satisfactory', 'needs_repair'];
-  
+
   // Type guard без использования any - проверяем через includes и явное сравнение типов
   if (validConditions.includes(condition)) {
     // Дополнительная проверка для type narrowing
@@ -166,7 +166,7 @@ export function validateCondition(
       condition === 'needs_repair'
     );
   }
-  
+
   return false;
 }
 
@@ -216,4 +216,3 @@ export async function validateUnique(
     code: 'NOT_UNIQUE',
   };
 }
-

@@ -12,7 +12,7 @@ export default function ScrollAnalytics() {
     let cleanup: (() => void) | null = null;
 
     const initScrollAnalytics = () => {
-      let startTime = Date.now();
+      const startTime = Date.now();
       const scrollDepths = [25, 50, 75, 90, 100];
       const trackedDepths = new Set<number>();
       let rafId: number | null = null;

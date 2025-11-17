@@ -39,10 +39,13 @@ export function log(level: LogLevel, message: string, context?: Record<string, u
   if (config.enableConsole) {
     const formatted = formatLog(entry);
     if (level === 'error') {
+      // eslint-disable-next-line no-console
       console.error(formatted);
     } else if (level === 'warn') {
+      // eslint-disable-next-line no-console
       console.warn(formatted);
     } else {
+      // eslint-disable-next-line no-console
       console.log(formatted);
     }
   }
@@ -54,4 +57,3 @@ export const logger = {
   warn: (message: string, context?: Record<string, unknown>) => log('warn', message, context),
   error: (message: string, context?: Record<string, unknown>, error?: Error) => log('error', message, context, error),
 };
-

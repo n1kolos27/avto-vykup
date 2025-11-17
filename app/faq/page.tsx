@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import FAQSection from '@/components/sections/FAQSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';

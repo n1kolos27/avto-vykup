@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiPhone } from 'react-icons/fi';
@@ -12,7 +12,7 @@ import { getReducedMotionConfig } from '@/lib/utils/accessibility';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [, setPrefersReducedMotion] = useState(false);
   const pathname = usePathname();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
@@ -112,12 +112,20 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  const isActive = (href: string) => {
+  const isActive = useCallback((href: string) => {
     if (href === '/') {
       return pathname === '/';
     }
     return pathname.startsWith(href);
-  };
+  }, [pathname]);
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   return (
     <header
@@ -204,7 +212,7 @@ export default function Header() {
 
           <motion.button
             className="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -224,7 +232,7 @@ export default function Header() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               />
               <motion.div
                 ref={mobileMenuRef}
@@ -237,7 +245,7 @@ export default function Header() {
                   {}
                 )}
                 className="fixed top-20 right-0 bottom-0 w-80 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
-                role="navigation"
+                role="dialog"
                 aria-label="Мобильное меню"
                 aria-modal="true"
               >
@@ -258,7 +266,7 @@ export default function Header() {
                               ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
                               : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
                           }`}
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={closeMenu}
                           aria-current={active ? 'page' : undefined}
                         >
                           {item.label}
@@ -271,7 +279,7 @@ export default function Header() {
                       href="#evaluation"
                       className="flex items-center justify-center space-x-2 bg-gradient-to-br from-primary-600 to-primary-700 text-white px-4 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                       whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                       aria-label="Оставить заявку на оценку автомобиля"
                     >
                       <span>Оставить заявку</span>
@@ -280,7 +288,7 @@ export default function Header() {
                       href={`tel:${phone1}`}
                       className="flex items-center justify-center space-x-2 bg-white text-primary-600 border-2 border-primary-600 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                       whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                       aria-label={`Позвонить по телефону ${phone1}`}
                     >
                       <FiPhone aria-hidden="true" />
@@ -290,7 +298,7 @@ export default function Header() {
                       href={`tel:${phone2}`}
                       className="flex items-center justify-center space-x-2 bg-white text-primary-600 border-2 border-primary-600 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                       whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                       aria-label={`Позвонить по телефону ${phone2}`}
                     >
                       <FiPhone aria-hidden="true" />
@@ -306,4 +314,3 @@ export default function Header() {
     </header>
   );
 }
-

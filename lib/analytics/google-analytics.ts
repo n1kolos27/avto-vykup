@@ -1,6 +1,6 @@
 /**
  * Analytics System - Google Analytics
- * 
+ *
  * Интеграция с Google Analytics 4
  */
 
@@ -30,10 +30,11 @@ export function initGoogleAnalytics(): void {
 
   // Функция gtag
   function gtag(
-    command: 'config' | 'event' | 'js' | 'set',
-    targetId: string | Date,
-    config?: Record<string, unknown>
+    _command: 'config' | 'event' | 'js' | 'set',
+    _targetId: string | Date,
+    _config?: Record<string, unknown>
   ): void {
+    // eslint-disable-next-line prefer-rest-params
     window.dataLayer!.push(arguments);
   }
 
@@ -93,4 +94,3 @@ export function trackConversion(
     currency,
   });
 }
-

@@ -78,6 +78,7 @@ const howToSchema = {
   '@type': 'HowTo',
   name: 'Как продать автомобиль через выкуп',
   description: 'Пошаговая инструкция по продаже автомобиля через компанию Выкуп авто',
+  url: `${baseUrl}/how-we-work`,
   totalTime: 'PT2H',
   estimatedCost: {
     '@type': 'MonetaryAmount',

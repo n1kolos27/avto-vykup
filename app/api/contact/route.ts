@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     let body: unknown;
     try {
       body = await request.json();
-    } catch (parseError) {
+    } catch {
       return NextResponse.json(
         {
           success: false,
@@ -146,6 +146,7 @@ export async function POST(request: NextRequest) {
     // Логирование для мониторинга
     const processingTime = Date.now() - startTime;
     if (ENV.NODE_ENV === 'production') {
+      // eslint-disable-next-line no-console
       console.log('Contact request processed', {
         ip: clientIP,
         processingTime,
@@ -155,6 +156,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!sendEmailResult.success) {
+      // eslint-disable-next-line no-console
       console.error('Failed to send email:', sendEmailResult.error);
 
       // В production режиме возвращаем ошибку
@@ -175,6 +177,7 @@ export async function POST(request: NextRequest) {
       }
 
       // В dev режиме логируем, но возвращаем success
+      // eslint-disable-next-line no-console
       console.warn('Email service not configured, but returning success in dev mode');
     }
 
@@ -195,6 +198,7 @@ export async function POST(request: NextRequest) {
     const processingTime = Date.now() - startTime;
 
     // Логирование ошибки
+    // eslint-disable-next-line no-console
     console.error('Error processing contact request:', {
       error: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,

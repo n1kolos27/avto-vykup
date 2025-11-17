@@ -1,0 +1,29 @@
+
+ПОЛНЫЙ ОТЧЕТ ПРОВЕРКИ ПРОИЗВОДИТЕЛЬНОСТИ
+========================================
+Дата: 17.11.2025, 12:09:34
+
+ИЗОБРАЖЕНИЯ:
+✓ Все критичные изображения присутствуют
+
+LIGHTHOUSE:
+✗ Не удалось создать отчет. Установите Lighthouse: npm install -g lighthouse
+
+CORE WEB VITALS:
+⚠ Требуется ручная проверка через:
+  - PageSpeed Insights: https://pagespeed.web.dev/
+  - Chrome DevTools → Performance
+  - WebPageTest: https://www.webpagetest.org/
+
+ЦЕЛЕВЫЕ МЕТРИКИ:
+- LCP (Largest Contentful Paint): < 2.5s
+- FID (First Input Delay): < 100ms
+- CLS (Cumulative Layout Shift): < 0.1
+- FCP (First Contentful Paint): < 1.8s
+- TTI (Time to Interactive): < 3.8s
+
+СЛЕДУЮЩИЕ ШАГИ:
+1. Создайте отсутствующие изображения (см. public/README-IMAGES.md)
+2. Проверьте Lighthouse отчет: N/A
+3. Проведите ручную проверку Core Web Vitals
+4. Отправьте sitemap в Google Search Console и Yandex Webmaster
