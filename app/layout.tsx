@@ -24,7 +24,11 @@ const ToastProvider = dynamic(() => import('@/components/ToastProvider'), {
   ssr: false,
 });
 
-const inter = Inter({ 
+const BrowserWarning = dynamic(() => import('@/components/BrowserWarning'), {
+  ssr: false,
+});
+
+const inter = Inter({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
   preload: true,
@@ -250,6 +254,39 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+        {/* Полифиллы для старых браузеров - загружаются условно */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Проверка и загрузка полифиллов только для старых браузеров
+              (function() {
+                // Проверка поддержки IntersectionObserver
+                if (!window.IntersectionObserver) {
+                  var script = document.createElement('script');
+                  script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+                  script.async = true;
+                  document.head.appendChild(script);
+                }
+
+                // Проверка поддержки ResizeObserver
+                if (!window.ResizeObserver) {
+                  var script2 = document.createElement('script');
+                  script2.src = 'https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver';
+                  script2.async = true;
+                  document.head.appendChild(script2);
+                }
+
+                // Проверка поддержки Intl (для старых браузеров)
+                if (!window.Intl || !window.Intl.NumberFormat || !window.Intl.DateTimeFormat) {
+                  var script3 = document.createElement('script');
+                  script3.src = 'https://polyfill.io/v3/polyfill.min.js?features=Intl,Intl.~locale.ru';
+                  script3.async = true;
+                  document.head.appendChild(script3);
+                }
+              })();
+            `,
+          }}
+        />
         {/* Критичная схема Organization - оставляем в head для SEO */}
         <script
           type="application/ld+json"
@@ -277,6 +314,9 @@ export default function RootLayout({
         </ErrorBoundary>
         <ErrorBoundary>
           <ScrollAnalytics />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <BrowserWarning />
         </ErrorBoundary>
         {/* Некритичные JSON-LD схемы - загружаются в конце body */}
         <script
@@ -306,4 +346,3 @@ export default function RootLayout({
     </html>
   );
 }
-

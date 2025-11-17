@@ -23,6 +23,7 @@ const nextConfig = {
     // optimizeCss: true, // Временно отключено из-за проблем с webpack
   },
 
+
   // Заголовки безопасности (дополнительные к middleware)
   async headers() {
     return [
@@ -80,6 +81,17 @@ const nextConfig = {
 
   // Оптимизация webpack
   webpack: (config, { dev, isServer }) => {
+    // Полифиллы для клиентской части
+    if (!isServer) {
+      // Добавляем fallback для Node.js модулей
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+
     // Оптимизация для production
     if (!isServer) {
       config.optimization = {

@@ -10,7 +10,10 @@
     "check:performance": "node scripts/check-performance.js",
     "check:seo": "node scripts/check-seo.js",
     "check:all": "npm run check:seo && npm run check:performance",
-    "generate:placeholders": "node scripts/generate-placeholder-images.js"
+    "generate:placeholders": "node scripts/generate-placeholder-images.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "framer-motion": "^11.0.0",
@@ -22,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.41.2",
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",

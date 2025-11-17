@@ -61,3 +61,8 @@ logs/
 
 # backup directories
 Main-Backup-*/
+
+# Playwright
+/playwright-report/
+/test-results/
+/playwright/.cache/
