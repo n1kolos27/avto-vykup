@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { APP_CONFIG, FOOTER_NAV_ITEMS } from '@/lib/config';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 
 export default function Footer() {
   const phone1 = APP_CONFIG.PHONE_1;
@@ -22,10 +22,21 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
             aria-labelledby="footer-about-heading"
           >
-            <h3 id="footer-about-heading" className="text-2xl font-bold mb-4">
-              <span className="bg-gradient-to-br from-primary-600 to-primary-700 px-4 py-2 rounded-lg shadow-lg inline-block">
-                ТОП-1
-              </span>
+            <h3 id="footer-about-heading" className="mb-4">
+              <Link
+                href="/"
+                className="inline-block focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded"
+                aria-label="Выкуп авто | Московский Авто Альянс - Главная страница"
+              >
+                <img
+                  src="/logo-white.svg"
+                  alt="Выкуп авто | Московский Авто Альянс - Логотип компании"
+                  className="h-16 w-auto max-w-[280px]"
+                  width={280}
+                  height={64}
+                  loading="lazy"
+                />
+              </Link>
             </h3>
             <p className="text-gray-300 leading-relaxed mt-4">
               Профессиональный выкуп автомобилей в Москве и Московской области.
@@ -41,7 +52,7 @@ export default function Footer() {
             aria-labelledby="footer-nav-heading"
           >
             <h4 id="footer-nav-heading" className="text-lg font-semibold mb-6 text-white">Навигация</h4>
-            <ul className="space-y-3" role="list">
+            <ul className="space-y-3">
               {navItems.map((item, index) => (
                 <motion.li
                   key={item.href}
@@ -49,11 +60,10 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
-                  role="listitem"
                 >
                   <Link
                     href={item.href}
-                    className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
+                    className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
                     aria-label={`Перейти на страницу: ${item.label}`}
                   >
                     <span className="group-hover:text-primary-400">{item.label}</span>
@@ -65,11 +75,10 @@ export default function Footer() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.1 + navItems.length * 0.05 }}
-                role="listitem"
               >
                 <Link
                   href="/sitemap-page"
-                  className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 inline-block group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
+                  className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
                   aria-label="Перейти на страницу: Карта сайта"
                 >
                   <span className="group-hover:text-primary-400">Карта сайта</span>
@@ -86,8 +95,8 @@ export default function Footer() {
             aria-labelledby="footer-contacts-heading"
           >
             <h4 id="footer-contacts-heading" className="text-lg font-semibold mb-6 text-white">Контакты</h4>
-            <ul className="space-y-4" role="list">
-                     <li role="listitem">
+            <ul className="space-y-4">
+                     <li>
                        <motion.a
                          href={`tel:${phone1}`}
                          className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
@@ -100,7 +109,7 @@ export default function Footer() {
                          <address className="not-italic font-medium">{phone1}</address>
                        </motion.a>
                      </li>
-                     <li role="listitem">
+                     <li>
                        <motion.a
                          href={`tel:${phone2}`}
                          className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
@@ -113,7 +122,7 @@ export default function Footer() {
                          <address className="not-italic font-medium">{phone2}</address>
                        </motion.a>
                      </li>
-                     <li role="listitem">
+                     <li>
                        <motion.a
                          href={`mailto:${email}`}
                          className="flex items-center space-x-3 text-gray-300 hover:text-white transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded p-2 min-h-[44px]"
@@ -126,7 +135,7 @@ export default function Footer() {
                          <address className="not-italic font-medium break-all">{email}</address>
                        </motion.a>
                      </li>
-                     <li className="flex items-start space-x-3 text-gray-300" role="listitem">
+                     <li className="flex items-start space-x-3 text-gray-300">
                        <div className="bg-primary-600/20 p-2 rounded-lg mt-1" aria-hidden="true">
                          <FiMapPin className="text-primary-400" aria-hidden="true" />
                        </div>

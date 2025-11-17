@@ -95,7 +95,7 @@ const organizationSchema = {
   name: 'Выкуп авто | Московский Авто Альянс',
   alternateName: 'Выкуп авто',
   url: `https://${domain}`,
-  logo: `https://${domain}/logo.png`,
+  logo: `https://${domain}/logo.svg`,
   foundingDate: '2014',
   foundingLocation: {
     '@type': 'Place',
@@ -174,7 +174,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'Выкуп авто | Московский Авто Альянс',
-  image: `https://${domain}/logo.png`,
+  image: `https://${domain}/logo.svg`,
   '@id': `https://${domain}`,
   url: `https://${domain}`,
   telephone: `+7${phone1.replace(/\D/g, '')}`,

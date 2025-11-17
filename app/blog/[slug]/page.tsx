@@ -643,7 +643,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       name: 'Выкуп авто | Московский Авто Альянс',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
+        url: `${baseUrl}/logo.svg`,
       },
     },
     mainEntityOfPage: {

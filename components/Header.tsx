@@ -129,6 +129,7 @@ export default function Header() {
 
   return (
     <header
+      role="banner"
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/80 backdrop-blur-lg shadow-lg'
@@ -140,20 +141,20 @@ export default function Header() {
           <Link
             href="/"
             className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
-            aria-label="Выкуп авто - Главная страница"
+            aria-label="Выкуп авто | Московский Авто Альянс - Главная страница"
           >
             <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0">
               <Image
-                src="/logo.png"
-                alt="Выкуп авто - Логотип компании"
+                src="/logo-icon.svg"
+                alt="Московский Авто Альянс - Логотип компании по выкупу автомобилей"
                 fill
                 className="object-contain"
                 priority
                 sizes="(max-width: 640px) 48px, 64px"
               />
             </div>
-            <span className="text-gray-800 font-semibold hidden sm:block">
-              Выкуп авто в МСК/МО
+            <span className="text-gray-800 font-semibold text-sm sm:text-base">
+              Московский Авто Альянс
             </span>
           </Link>
 
@@ -166,8 +167,8 @@ export default function Header() {
                   href={item.href}
                   className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 min-h-[44px] flex items-center ${
                     active
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                      ? 'text-primary-700 bg-primary-50'
+                      : 'text-gray-700 hover:text-primary-700 hover:bg-gray-50'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -175,7 +176,7 @@ export default function Header() {
                   {active && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600 rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-700 rounded-full"
                       initial={false}
                       transition={getReducedMotionConfig(
                         { type: 'spring', stiffness: 500, damping: 30 },
@@ -200,7 +201,7 @@ export default function Header() {
             </motion.a>
             <motion.a
               href={`tel:${phone1}`}
-              className="flex items-center space-x-2 bg-white text-primary-600 border-2 border-primary-600 px-4 py-2 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 min-h-[44px]"
+              className="flex items-center space-x-2 bg-white text-primary-700 border-2 border-primary-700 px-4 py-2 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 min-h-[44px]"
               whileHover={getReducedMotionConfig({ scale: 1.05, y: -1 }, {})}
               whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
               aria-label={`Позвонить по телефону ${phone1}`}
@@ -244,7 +245,7 @@ export default function Header() {
                   { type: 'spring', damping: 25, stiffness: 200 },
                   {}
                 )}
-                className="fixed top-20 right-0 bottom-0 w-80 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
+                className="fixed top-20 right-0 bottom-0 w-full max-w-80 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
                 role="dialog"
                 aria-label="Мобильное меню"
                 aria-modal="true"
@@ -263,8 +264,8 @@ export default function Header() {
                           href={item.href}
                           className={`block px-4 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 min-h-[44px] flex items-center ${
                             active
-                              ? 'text-primary-600 bg-primary-50 border-l-4 border-primary-600'
-                              : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                              ? 'text-primary-700 bg-primary-50 border-l-4 border-primary-700'
+                              : 'text-gray-700 hover:text-primary-700 hover:bg-gray-50'
                           }`}
                           onClick={closeMenu}
                           aria-current={active ? 'page' : undefined}
@@ -286,7 +287,7 @@ export default function Header() {
                     </motion.a>
                     <motion.a
                       href={`tel:${phone1}`}
-                      className="flex items-center justify-center space-x-2 bg-white text-primary-600 border-2 border-primary-600 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                      className="flex items-center justify-center space-x-2 bg-white text-primary-700 border-2 border-primary-700 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                       whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
                       onClick={closeMenu}
                       aria-label={`Позвонить по телефону ${phone1}`}
@@ -296,7 +297,7 @@ export default function Header() {
                     </motion.a>
                     <motion.a
                       href={`tel:${phone2}`}
-                      className="flex items-center justify-center space-x-2 bg-white text-primary-600 border-2 border-primary-600 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                      className="flex items-center justify-center space-x-2 bg-white text-primary-700 border-2 border-primary-700 px-4 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                       whileTap={getReducedMotionConfig({ scale: 0.95 }, {})}
                       onClick={closeMenu}
                       aria-label={`Позвонить по телефону ${phone2}`}
