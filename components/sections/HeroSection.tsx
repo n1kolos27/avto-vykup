@@ -3,6 +3,8 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PhoneButton from '../PhoneButton';
+import HeroCalculator from '../HeroCalculator';
+import CarBrandsLogos from '../CarBrandsLogos';
 import { FiArrowDown, FiCheck, FiAward, FiShield, FiTrendingUp } from 'react-icons/fi';
 import { APP_CONFIG } from '@/lib/config';
 import { useABTest, trackABTestConversion } from '@/lib/ab-testing';
@@ -85,15 +87,21 @@ function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
-            className="text-base md:text-lg mb-8 md:mb-10 text-primary-100 font-medium"
+            className="text-base md:text-lg mb-6 md:mb-8 text-primary-100 font-medium"
           >
             ⚡ Оценка за 5 минут - бесплатно | 💰 Честная рыночная цена | ✅ Оплата сразу
           </motion.p>
 
+          {/* Hero Calculator */}
+          <HeroCalculator />
+
+          {/* Car Brands Logos */}
+          <CarBrandsLogos />
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
             className="flex flex-col sm:flex-row gap-4 mb-6 md:mb-8"
           >
             <motion.a
@@ -132,7 +140,7 @@ function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
             className="mb-6 md:mb-8"
           >
             <div className="flex items-center space-x-4 text-sm md:text-base text-primary-100">
@@ -158,7 +166,7 @@ function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.65 }}
             className="flex flex-wrap gap-3 md:gap-4 mb-6 md:mb-8"
           >
             {trustBadges.map((badge, index) => {
@@ -181,7 +189,7 @@ function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
             className="flex flex-wrap gap-4 md:gap-6"
           >
             {features.map((feature, index) => (

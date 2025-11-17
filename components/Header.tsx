@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiPhone } from 'react-icons/fi';
+import { FiMenu, FiX, FiPhone, FiMessageCircle } from 'react-icons/fi';
 import { APP_CONFIG, MAIN_NAV_ITEMS } from '@/lib/config';
 import { getReducedMotionConfig } from '@/lib/utils/accessibility';
 
@@ -136,6 +136,56 @@ export default function Header() {
           : 'bg-white shadow-md'
       }`}
     >
+      {/* Top Contact Bar */}
+      <div className="bg-gray-800 text-white py-2 hidden md:block">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center space-x-4">
+              <a
+                href={`tel:${phone1}`}
+                className="flex items-center space-x-2 hover:text-primary-400 transition-colors min-h-[44px]"
+                aria-label={`Позвонить по телефону ${phone1}`}
+              >
+                <FiPhone size={16} />
+                <span>{phone1}</span>
+              </a>
+              <span className="text-gray-500">|</span>
+              <a
+                href={`https://wa.me/${phone1.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:text-green-400 transition-colors min-h-[44px]"
+                aria-label="Написать в WhatsApp"
+              >
+                <span>WhatsApp</span>
+              </a>
+              <span className="text-gray-500">|</span>
+              <a
+                href={`https://t.me/${phone1.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:text-blue-400 transition-colors min-h-[44px]"
+                aria-label="Написать в Telegram"
+              >
+                <span>Telegram</span>
+              </a>
+            </div>
+            <button
+              onClick={() => {
+                // Отправляем событие для открытия ChatWidget
+                window.dispatchEvent(new CustomEvent('openChat'));
+              }}
+              className="flex items-center space-x-2 hover:text-primary-400 transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              aria-label="Открыть чат"
+              type="button"
+            >
+              <FiMessageCircle size={16} aria-hidden="true" />
+              <span>Чат</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link

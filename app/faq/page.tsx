@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
@@ -208,9 +209,26 @@ export default function FAQPage() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                 Часто задаваемые вопросы
               </h1>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 mb-6">
                 Ответы на {allFAQs.length} самых популярных вопросов о выкупе автомобилей
               </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                <Link href="/services/urgent-buyback" className="px-4 py-2 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-200 transition-colors">
+                  Срочный выкуп
+                </Link>
+                <Link href="/services/damaged-cars" className="px-4 py-2 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-200 transition-colors">
+                  Выкуп битых авто
+                </Link>
+                <Link href="/services/after-accident" className="px-4 py-2 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-200 transition-colors">
+                  Выкуп после ДТП
+                </Link>
+                <Link href="/services/credit-cars" className="px-4 py-2 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-200 transition-colors">
+                  Выкуп кредитных авто
+                </Link>
+                <Link href="/services/premium-cars" className="px-4 py-2 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-200 transition-colors">
+                  Выкуп премиум авто
+                </Link>
+              </div>
             </div>
 
             <div className="space-y-4">

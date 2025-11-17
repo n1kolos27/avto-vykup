@@ -5,6 +5,33 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 
+const socialNetworks = [
+  { name: 'VKontakte', url: '#', icon: 'VK', color: 'bg-blue-600' },
+  { name: 'Facebook', url: '#', icon: 'FB', color: 'bg-blue-800' },
+  { name: 'Instagram', url: '#', icon: 'IG', color: 'bg-gradient-to-r from-purple-600 to-pink-600' },
+  { name: 'YouTube', url: '#', icon: 'YT', color: 'bg-red-600' },
+];
+
+const directions = [
+  { href: '/services/buyback-cars', label: 'Выкуп автомобилей' },
+  { href: '/services/urgent-buyback', label: 'Срочный выкуп автомобилей' },
+  { href: '/services/damaged-cars', label: 'Выкуп битых автомобилей' },
+  { href: '/services/after-accident', label: 'Выкуп после ДТП' },
+  { href: '/services/credit-cars', label: 'Выкуп кредитных автомобилей' },
+  { href: '/services/premium-cars', label: 'Выкуп премиум автомобилей' },
+];
+
+const sections = [
+  { href: '/', label: 'Главная' },
+  { href: '/about', label: 'О нас' },
+  { href: '/how-we-work', label: 'Как мы работаем' },
+  { href: '/reviews', label: 'Отзывы' },
+  { href: '/blog', label: 'Статьи' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/contacts', label: 'Контакты' },
+  { href: '/car-brands', label: 'Марки авто' },
+];
+
 export default function Footer() {
   const phone1 = APP_CONFIG.PHONE_1;
   const phone2 = APP_CONFIG.PHONE_2;
@@ -14,7 +41,38 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-white" role="contentinfo">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        {/* Social Networks Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-2xl font-bold mb-6">Вступайте в наши группы</h3>
+          <div className="flex justify-center items-center gap-4 flex-wrap">
+            {socialNetworks.map((social, index) => (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className={`${social.color} text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-[64px] min-h-[64px] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800`}
+                aria-label={`Перейти в ${social.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.section>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,11 +107,11 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            aria-labelledby="footer-nav-heading"
+            aria-labelledby="footer-directions-heading"
           >
-            <h4 id="footer-nav-heading" className="text-lg font-semibold mb-6 text-white">Навигация</h4>
+            <h4 id="footer-directions-heading" className="text-lg font-semibold mb-6 text-white">НАПРАВЛЕНИЯ</h4>
             <ul className="space-y-3">
-              {navItems.map((item, index) => (
+              {directions.map((item, index) => (
                 <motion.li
                   key={item.href}
                   initial={{ opacity: 0, x: -10 }}
@@ -70,20 +128,35 @@ export default function Footer() {
                   </Link>
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.1 + navItems.length * 0.05 }}
-              >
-                <Link
-                  href="/sitemap-page"
-                  className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
-                  aria-label="Перейти на страницу: Карта сайта"
+            </ul>
+          </motion.nav>
+
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            aria-labelledby="footer-sections-heading"
+          >
+            <h4 id="footer-sections-heading" className="text-lg font-semibold mb-6 text-white">РАЗДЕЛЫ</h4>
+            <ul className="space-y-3">
+              {sections.map((item, index) => (
+                <motion.li
+                  key={item.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.15 + index * 0.05 }}
                 >
-                  <span className="group-hover:text-primary-400">Карта сайта</span>
-                </Link>
-              </motion.li>
+                  <Link
+                    href={item.href}
+                    className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-1 group focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded min-h-[44px] flex items-center"
+                    aria-label={`Перейти на страницу: ${item.label}`}
+                  >
+                    <span className="group-hover:text-primary-400">{item.label}</span>
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
           </motion.nav>
 

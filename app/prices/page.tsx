@@ -8,11 +8,11 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
-  title: 'Цены на выкуп автомобилей | Прозрачное ценообразование',
+  title: 'Цены на выкуп автомобилей | Прозрачное ценообразование | До 97% рыночной стоимости',
   description:
-    'Прозрачная информация о ценообразовании при выкупе автомобилей. Как мы определяем цену, что влияет на стоимость. Факторы оценки: марка, год, пробег, состояние, комплектация.',
+    'Прозрачная информация о ценообразовании при выкупе автомобилей в Москве и МО. Как мы определяем цену, что влияет на стоимость. Факторы оценки: марка, год, пробег, состояние, комплектация. До 97% рыночной стоимости. Честная оценка, моментальная оплата.',
   keywords:
-    'цены выкуп авто, стоимость выкупа, ценообразование, факторы цены, как определяется цена, оценка стоимости',
+    'цены выкуп авто, стоимость выкупа, ценообразование, факторы цены, как определяется цена, оценка стоимости, цена выкупа авто москва, стоимость выкупа автомобиля, до 97 процентов рыночной стоимости, честная цена выкупа',
   path: '/prices',
 });
 
@@ -111,8 +111,15 @@ export default function PricesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Цены на выкуп автомобилей
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-4">
               Прозрачная информация о том, как мы определяем стоимость вашего автомобиля
+            </p>
+            <p className="text-sm text-gray-500">
+              Узнайте больше о наших услугах: <Link href="/services/urgent-buyback" className="text-primary-600 hover:text-primary-700 underline">срочный выкуп</Link>,
+              <Link href="/services/damaged-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп битых авто</Link>,
+              <Link href="/services/after-accident" className="text-primary-600 hover:text-primary-700 underline"> выкуп после ДТП</Link>,
+              <Link href="/services/credit-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп кредитных авто</Link>,
+              <Link href="/services/premium-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп премиум авто</Link>.
             </p>
           </AnimatedSection>
 

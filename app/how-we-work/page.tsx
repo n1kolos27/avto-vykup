@@ -8,11 +8,11 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
-  title: 'Как мы работаем | Процесс выкупа за 4 шага',
+  title: 'Как мы работаем | Процесс выкупа за 4 шага | Выкуп за 2 часа',
   description:
-    'Детальный процесс выкупа автомобиля. От звонка до получения денег - всего 4 простых шага за 2 часа. Звонок, осмотр, оформление документов, оплата.',
+    'Детальный процесс выкупа автомобиля в Москве и МО. От звонка до получения денег - всего 4 простых шага за 2 часа. Звонок, осмотр, оформление документов, оплата. Бесплатная оценка, моментальная оплата.',
   keywords:
-    'как мы работаем, процесс выкупа, этапы выкупа, как продать авто, процедура выкупа, шаги выкупа',
+    'как мы работаем, процесс выкупа, этапы выкупа, как продать авто, процедура выкупа, шаги выкупа, процесс выкупа авто, как происходит выкуп, этапы выкупа автомобиля, процедура выкупа авто москва',
   path: '/how-we-work',
 });
 
@@ -255,6 +255,35 @@ export default function HowWeWorkPage() {
               В среднем от звонка до получения денег проходит всего 2 часа. Без долгих
               ожиданий, проволочек и лишних формальностей. <Link href="/guarantees" className="text-white underline hover:text-primary-100">Ознакомьтесь с нашими гарантиями при выкупе автомобиля</Link>.
             </p>
+            <div className="mt-8 pt-8 border-t border-primary-500">
+              <h3 className="text-2xl font-bold mb-4">Наши услуги</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Link href="/services/urgent-buyback" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Срочный выкуп</h4>
+                  <p className="text-sm text-primary-100">Выкуп за 2 часа</p>
+                </Link>
+                <Link href="/services/damaged-cars" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Выкуп битых авто</h4>
+                  <p className="text-sm text-primary-100">Любая степень повреждения</p>
+                </Link>
+                <Link href="/services/after-accident" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Выкуп после ДТП</h4>
+                  <p className="text-sm text-primary-100">Оценка остаточной стоимости</p>
+                </Link>
+                <Link href="/services/credit-cars" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Выкуп кредитных авто</h4>
+                  <p className="text-sm text-primary-100">Помощь с банком</p>
+                </Link>
+                <Link href="/services/premium-cars" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Выкуп премиум авто</h4>
+                  <p className="text-sm text-primary-100">Элитные автомобили</p>
+                </Link>
+                <Link href="/services/buyback-cars" className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center">
+                  <h4 className="font-semibold mb-2">Выкуп автомобилей</h4>
+                  <p className="text-sm text-primary-100">Все марки и модели</p>
+                </Link>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="text-4xl font-bold mb-2">5 мин</div>

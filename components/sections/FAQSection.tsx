@@ -3,6 +3,7 @@
 import { getReducedMotionConfig } from '@/lib/utils/accessibility';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
@@ -53,14 +54,37 @@ export default function FAQSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Часто задаваемые вопросы
+            Честные ответы на важные вопросы
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Ответы на самые популярные вопросы о выкупе автомобилей
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Expert Image */}
+          <motion.div
+            initial={getReducedMotionConfig({ opacity: 0, x: -20 }, { opacity: 0 })}
+            whileInView={getReducedMotionConfig({ opacity: 1, x: 0 }, { opacity: 1 })}
+            viewport={{ once: true }}
+            transition={getReducedMotionConfig({ duration: 0.6 }, { duration: 0 })}
+            className="lg:col-span-1 hidden lg:block"
+          >
+            <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="w-32 h-32 bg-primary-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-white text-4xl font-bold">Э</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">Эксперт</h3>
+                  <p className="text-gray-600 text-sm">Специалист по выкупу автомобилей</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* FAQ List */}
+          <div className="lg:col-span-2 space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -107,6 +131,7 @@ export default function FAQSection() {
               </AnimatePresence>
             </motion.div>
           ))}
+          </div>
         </div>
 
         <motion.div

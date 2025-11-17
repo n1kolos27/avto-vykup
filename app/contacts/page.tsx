@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiPhone, FiMail, FiMapPin, FiClock } from 'react-icons/fi';
 import PhoneButton from '@/components/PhoneButton';
@@ -405,6 +406,60 @@ export default function ContactsPage() {
               </div>
             </motion.div>
           </div>
+
+          {/* Services Section */}
+          <section className="mt-16 bg-primary-600 text-white rounded-lg shadow-lg p-8 md:p-12">
+            <h2 className="text-3xl font-bold mb-6 text-center">
+              Наши услуги по выкупу автомобилей
+            </h2>
+            <p className="text-lg text-primary-100 mb-8 text-center max-w-3xl mx-auto">
+              Свяжитесь с нами для получения консультации по любой из наших услуг. Каждая услуга имеет отдельную страницу с детальной информацией.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/services/urgent-buyback"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Срочный выкуп</h3>
+                <p className="text-sm text-primary-100">Выкуп за 2 часа</p>
+              </Link>
+              <Link
+                href="/services/damaged-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп битых авто</h3>
+                <p className="text-sm text-primary-100">Любая степень повреждения</p>
+              </Link>
+              <Link
+                href="/services/after-accident"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп после ДТП</h3>
+                <p className="text-sm text-primary-100">Оценка остаточной стоимости</p>
+              </Link>
+              <Link
+                href="/services/credit-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп кредитных авто</h3>
+                <p className="text-sm text-primary-100">Помощь с банком</p>
+              </Link>
+              <Link
+                href="/services/premium-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп премиум авто</h3>
+                <p className="text-sm text-primary-100">Элитные автомобили</p>
+              </Link>
+              <Link
+                href="/services/buyback-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп автомобилей</h3>
+                <p className="text-sm text-primary-100">Все марки и модели</p>
+              </Link>
+            </div>
+          </section>
         </div>
       </div>
     </div>

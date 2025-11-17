@@ -74,6 +74,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8
     },
     {
+      url: `${baseUrl}/services/buyback-cars`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/services/urgent-buyback`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/services/damaged-cars`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/services/after-accident`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/services/credit-cars`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/services/premium-cars`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: `${baseUrl}/car-brands`,
+      lastModified: lastWeek,
+      changeFrequency: 'weekly',
+      priority: 0.8
+    },
+    {
       url: `${baseUrl}/faq`,
       lastModified: lastWeek,
       changeFrequency: 'weekly',

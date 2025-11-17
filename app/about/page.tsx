@@ -8,11 +8,11 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
-  title: 'О нас | Компания по выкупу автомобилей',
+  title: 'О нас | Компания по выкупу автомобилей | 10+ лет опыта | Москва и МО',
   description:
-    'Узнайте больше о нашей компании по выкупу автомобилей. Более 10 лет опыта, 5000+ довольных клиентов, 2.5 млрд ₽ выкупленных авто. Команда профессионалов, честность, скорость.',
+    'Узнайте больше о нашей компании по выкупу автомобилей в Москве и МО. Более 10 лет опыта, 5000+ довольных клиентов, 2.5 млрд ₽ выкупленных авто. Команда профессионалов, честность, скорость. Выкуп за 2 часа, до 97% рыночной стоимости.',
   keywords:
-    'о компании, выкуп авто, история компании, опыт работы, команда профессионалов, достижения',
+    'о компании, выкуп авто, история компании, опыт работы, команда профессионалов, достижения, компания выкуп авто москва, о нас выкуп автомобилей, история компании выкуп, опыт работы выкуп авто',
   path: '/about',
 });
 
@@ -104,6 +104,11 @@ export default function AboutPage() {
                 За годы работы мы выкупили более 5000 автомобилей на общую сумму свыше
                 2.5 миллиардов рублей. Мы работаем с автомобилями всех марок и моделей,
                 в любом состоянии - от идеального до требующего серьезного ремонта. <Link href="/reviews" className="text-primary-600 hover:text-primary-700 underline">Прочитайте отзывы наших клиентов о выкупе автомобилей</Link>.
+                Предлагаем <Link href="/services/urgent-buyback" className="text-primary-600 hover:text-primary-700 underline">срочный выкуп</Link>,
+                <Link href="/services/damaged-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп битых авто</Link>,
+                <Link href="/services/after-accident" className="text-primary-600 hover:text-primary-700 underline"> выкуп после ДТП</Link>,
+                <Link href="/services/credit-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп кредитных авто</Link> и
+                <Link href="/services/premium-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп премиум автомобилей</Link>.
               </p>
             </div>
           </section>

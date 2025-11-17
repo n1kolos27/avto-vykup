@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { FiMessageCircle, FiX, FiSend } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackChatOpen, trackChatMessage } from '@/lib/analytics/events';
@@ -17,19 +17,19 @@ export default function ChatWidget() {
   const phone1 = APP_CONFIG.PHONE_1;
   // phone2 не используется
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
     setIsOpen(true);
     trackChatOpen();
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsOpen(false);
     // Return focus to previous element
     if (previousActiveElementRef.current) {
       previousActiveElementRef.current.focus();
       previousActiveElementRef.current = null;
     }
-  };
+  }, []);
 
   const handleSend = () => {
     if (message.trim()) {
@@ -52,6 +52,18 @@ export default function ChatWidget() {
       }, 100);
     }
   }, [isOpen]);
+
+  // Слушаем событие открытия чата из Header
+  useEffect(() => {
+    const handleOpenChat = () => {
+      handleOpen();
+    };
+
+    window.addEventListener('openChat', handleOpenChat);
+    return () => {
+      window.removeEventListener('openChat', handleOpenChat);
+    };
+  }, [handleOpen]);
 
   // Keyboard navigation
   useEffect(() => {

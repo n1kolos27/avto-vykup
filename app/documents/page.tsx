@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { FiFileText, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedCard from '@/components/AnimatedCard';
@@ -7,11 +8,11 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
-  title: 'Документы для выкупа автомобиля | Полный список',
+  title: 'Документы для выкупа автомобиля | Полный список | ПТС СТС | Москва и МО',
   description:
-    'Полный список документов, необходимых для выкупа автомобиля. ПТС, СТС, паспорт владельца. Что нужно подготовить перед продажей. Особые случаи: кредит, залог, ограничения.',
+    'Полный список документов, необходимых для выкупа автомобиля в Москве и МО. ПТС, СТС, паспорт владельца. Что нужно подготовить перед продажей. Особые случаи: кредит, залог, ограничения. Помощь с оформлением документов.',
   keywords:
-    'документы для выкупа, ПТС, СТС, документы на авто, что нужно для продажи авто, список документов, подготовка документов',
+    'документы для выкупа, ПТС, СТС, документы на авто, что нужно для продажи авто, список документов, подготовка документов, документы выкуп авто москва, какие документы нужны для выкупа, ПТС СТС для выкупа, документы для продажи авто, список документов выкуп',
   path: '/documents',
 });
 
@@ -69,11 +70,15 @@ const specialCases = [
     title: 'Автомобиль в кредите',
     description:
       'Нужны документы от банка о погашении кредита или разрешение на продажу. Мы поможем оформить перевод долга.',
+    link: '/services/credit-cars',
+    linkText: 'Узнать больше о выкупе кредитных авто',
   },
   {
     title: 'Автомобиль в залоге',
     description:
       'Нужны документы о снятии залога или разрешение залогодержателя на продажу.',
+    link: '/services/credit-cars',
+    linkText: 'Узнать больше о выкупе залоговых авто',
   },
   {
     title: 'Автомобиль с ограничениями',
@@ -191,7 +196,16 @@ export default function DocumentsPage() {
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     {caseItem.title}
                   </h3>
-                  <p className="text-gray-600">{caseItem.description}</p>
+                  <p className="text-gray-600 mb-2">{caseItem.description}</p>
+                  {caseItem.link && (
+                    <Link
+                      href={caseItem.link}
+                      className="text-primary-600 hover:text-primary-700 font-semibold text-sm underline inline-flex items-center"
+                    >
+                      {caseItem.linkText}
+                      <span className="ml-1">→</span>
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
@@ -231,6 +245,60 @@ export default function DocumentsPage() {
                 </span>
               </li>
             </ul>
+          </section>
+
+          {/* Services Section */}
+          <section className="mt-16 bg-primary-600 text-white rounded-lg shadow-lg p-8 md:p-12">
+            <h2 className="text-3xl font-bold mb-6 text-center">
+              Наши услуги по выкупу автомобилей
+            </h2>
+            <p className="text-lg text-primary-100 mb-8 text-center max-w-3xl mx-auto">
+              Помогаем с оформлением всех необходимых документов для выкупа. Каждая услуга имеет отдельную страницу с детальной информацией.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/services/credit-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп кредитных авто</h3>
+                <p className="text-sm text-primary-100">Помощь с банком и документами</p>
+              </Link>
+              <Link
+                href="/services/urgent-buyback"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Срочный выкуп</h3>
+                <p className="text-sm text-primary-100">Выкуп за 2 часа</p>
+              </Link>
+              <Link
+                href="/services/damaged-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп битых авто</h3>
+                <p className="text-sm text-primary-100">Любая степень повреждения</p>
+              </Link>
+              <Link
+                href="/services/after-accident"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп после ДТП</h3>
+                <p className="text-sm text-primary-100">Оценка остаточной стоимости</p>
+              </Link>
+              <Link
+                href="/services/premium-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп премиум авто</h3>
+                <p className="text-sm text-primary-100">Элитные автомобили</p>
+              </Link>
+              <Link
+                href="/services/buyback-cars"
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors text-center"
+              >
+                <h3 className="font-semibold mb-2">Выкуп автомобилей</h3>
+                <p className="text-sm text-primary-100">Все марки и модели</p>
+              </Link>
+            </div>
           </section>
         </div>
       </div>

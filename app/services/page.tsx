@@ -18,7 +18,7 @@ export const metadata: Metadata = genMeta({
 const services = [
   {
     icon: FiDollarSign,
-    title: 'Выкуп легковых автомобилей',
+    title: 'Выкуп автомобилей',
     description:
       'Выкупаем легковые автомобили всех марок и моделей в любом состоянии. От бюджетных до премиум класса.',
     features: [
@@ -27,18 +27,33 @@ const services = [
       'Честная оценка',
       'Моментальная оплата',
     ],
+    href: '/services/buyback-cars',
   },
   {
-    icon: FiTruck,
-    title: 'Выкуп коммерческого транспорта',
+    icon: FiClock,
+    title: 'Срочный выкуп',
     description:
-      'Специализируемся на выкупе грузовиков, микроавтобусов, спецтехники и другого коммерческого транспорта.',
+      'Срочный выкуп автомобилей за 2 часа. Идеально для тех, кому нужны деньги быстро.',
     features: [
-      'Грузовики',
-      'Микроавтобусы',
-      'Спецтехника',
-      'Профессиональная оценка',
+      'Выкуп за 2 часа',
+      'Моментальная оплата',
+      'Выезд на место',
+      'Работаем 9:00-22:00',
     ],
+    href: '/services/urgent-buyback',
+  },
+  {
+    icon: FiShield,
+    title: 'Выкуп битых автомобилей',
+    description:
+      'Выкупаем битые и аварийные автомобили с любыми повреждениями. Оценка остаточной стоимости.',
+    features: [
+      'Любая степень повреждения',
+      'Оценка остаточной стоимости',
+      'Эвакуатор за наш счет',
+      'Справедливая цена',
+    ],
+    href: '/services/damaged-cars',
   },
   {
     icon: FiShield,
@@ -51,6 +66,7 @@ const services = [
       'Возможность восстановления',
       'Справедливая цена',
     ],
+    href: '/services/after-accident',
   },
   {
     icon: FiFileText,
@@ -58,23 +74,12 @@ const services = [
     description:
       'Помогаем с выкупом автомобилей, находящихся в залоге. Оформляем перевод долга и все необходимые документы.',
     features: [
-      'Помощь с документами',
+      'Помощь с банком',
       'Оформление перевода долга',
-      'Консультации',
+      'Погашение кредита',
       'Быстрое решение',
     ],
-  },
-  {
-    icon: FiClock,
-    title: 'Срочный выкуп',
-    description:
-      'Срочный выкуп автомобилей в течение нескольких часов. Идеально для тех, кому нужны деньги быстро.',
-    features: [
-      'Выкуп за 2 часа',
-      'Моментальная оплата',
-      'Выезд на место',
-      'Без проволочек',
-    ],
+    href: '/services/credit-cars',
   },
   {
     icon: FiAward,
@@ -85,8 +90,22 @@ const services = [
       'Премиум марки',
       'Элитные автомобили',
       'Профессиональная оценка',
-      'Высокая цена',
+      'Максимальная цена',
     ],
+    href: '/services/premium-cars',
+  },
+  {
+    icon: FiTruck,
+    title: 'Выкуп коммерческого транспорта',
+    description:
+      'Специализируемся на выкупе грузовиков, микроавтобусов, спецтехники и другого коммерческого транспорта.',
+    features: [
+      'Грузовики',
+      'Микроавтобусы',
+      'Спецтехника',
+      'Профессиональная оценка',
+    ],
+    href: '/services/buyback-cars',
   },
 ];
 
@@ -131,10 +150,12 @@ export default function ServicesPage() {
             <Breadcrumbs className="mb-6" />
             <AnimatedSection className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                Наши услуги
+                Наши услуги по выкупу автомобилей
               </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Полный спектр услуг по выкупу автомобилей в Москве и Московской области
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Полный спектр услуг по выкупу автомобилей в Москве и Московской области.
+                Выберите нужную услугу и узнайте подробности. Каждая услуга имеет отдельную страницу
+                с детальной информацией, процессом работы и FAQ.
               </p>
             </AnimatedSection>
 
@@ -145,23 +166,30 @@ export default function ServicesPage() {
                 <AnimatedCard
                   key={index}
                   delay={index * 0.1}
-                  className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
-                  <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                    <Icon className="text-primary-600 text-2xl" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
-                        <span className="text-primary-600">✓</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <Link href={service.href} className="block">
+                    <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                      <Icon className="text-primary-600 text-2xl" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3 hover:text-primary-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <ul className="space-y-2 mb-4">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
+                          <span className="text-primary-600">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <span className="text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+                        Узнать больше →
+                      </span>
+                    </div>
+                  </Link>
                 </AnimatedCard>
               );
             })}

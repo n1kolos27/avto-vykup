@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
 import AnimatedSection from '@/components/AnimatedSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -6,11 +7,11 @@ import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { APP_CONFIG } from '@/lib/config';
 
 export const metadata: Metadata = genMeta({
-  title: 'Блог о выкупе автомобилей | Полезные статьи и советы',
+  title: 'Блог о выкупе автомобилей | Полезные статьи и советы | Москва и МО',
   description:
-    'Полезные статьи о выкупе автомобилей, советы по продаже авто, новости автомобильного рынка Москвы и МО. 18+ детальных статей с практическими рекомендациями.',
+    'Полезные статьи о выкупе автомобилей в Москве и МО, советы по продаже авто, новости автомобильного рынка. 18+ детальных статей с практическими рекомендациями. Как продать авто, документы для выкупа, выкуп после ДТП, кредитных авто.',
   keywords:
-    'блог выкуп авто, статьи о выкупе, советы по продаже авто, новости автомобильного рынка, как продать авто, информация о выкупе',
+    'блог выкуп авто, статьи о выкупе, советы по продаже авто, новости автомобильного рынка, как продать авто, информация о выкупе, блог выкуп авто москва, статьи выкуп автомобилей, советы выкуп авто, как продать машину, выкуп авто статьи',
   path: '/blog',
   type: 'website',
 });
@@ -195,8 +196,13 @@ export default function BlogPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Блог о выкупе автомобилей
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Полезные статьи, советы и новости о выкупе автомобилей в Москве и МО
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+              Полезные статьи, советы и новости о выкупе автомобилей в Москве и МО.
+              Узнайте больше о наших услугах: <Link href="/services/urgent-buyback" className="text-primary-600 hover:text-primary-700 underline">срочный выкуп</Link>,
+              <Link href="/services/damaged-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп битых авто</Link>,
+              <Link href="/services/after-accident" className="text-primary-600 hover:text-primary-700 underline"> выкуп после ДТП</Link>,
+              <Link href="/services/credit-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп кредитных авто</Link>,
+              <Link href="/services/premium-cars" className="text-primary-600 hover:text-primary-700 underline"> выкуп премиум авто</Link>.
             </p>
           </AnimatedSection>
 

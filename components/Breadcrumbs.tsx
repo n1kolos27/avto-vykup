@@ -19,6 +19,12 @@ const defaultLabels: Record<string, string> = {
   '/': 'Главная',
   '/calculator': 'Калькулятор',
   '/services': 'Услуги',
+  '/services/buyback-cars': 'Выкуп автомобилей',
+  '/services/urgent-buyback': 'Срочный выкуп',
+  '/services/damaged-cars': 'Выкуп битых авто',
+  '/services/after-accident': 'Выкуп после ДТП',
+  '/services/credit-cars': 'Выкуп кредитных авто',
+  '/services/premium-cars': 'Выкуп премиум авто',
   '/reviews': 'Отзывы',
   '/blog': 'Блог',
   '/faq': 'FAQ',
@@ -29,6 +35,7 @@ const defaultLabels: Record<string, string> = {
   '/guarantees': 'Гарантии',
   '/how-we-work': 'Как мы работаем',
   '/why-us': 'Почему мы',
+  '/car-brands': 'Марки автомобилей',
 };
 
 export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
@@ -108,4 +115,3 @@ export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps)
     </>
   );
 }
-
