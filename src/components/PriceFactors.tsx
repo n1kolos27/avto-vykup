@@ -1,0 +1,126 @@
+import React from 'react';
+import Card from './ui/Card';
+
+interface PriceFactor {
+  name: string;
+  impact: 'positive' | 'negative' | 'neutral';
+  description: string;
+  tip?: string;
+}
+
+const factors: PriceFactor[] = [
+  {
+    name: 'Техническое состояние',
+    impact: 'positive',
+    description:
+      'Автомобиль в отличном техническом состоянии без необходимости ремонта стоит на 20-30% дороже.',
+    tip: 'Проведите предпродажную подготовку: замените масло, проверьте все системы.',
+  },
+  {
+    name: 'Пробег',
+    impact: 'negative',
+    description:
+      'Высокий пробег снижает стоимость. Нормальный пробег: 15,000-20,000 км в год.',
+    tip: 'Если пробег высокий, но машина в хорошем состоянии, это не критично.',
+  },
+  {
+    name: 'Внешний вид',
+    impact: 'positive',
+    description:
+      'Чистый, ухоженный автомобиль без царапин и вмятин оценивается выше на 5-10%.',
+    tip: 'Помойте машину, уберите личные вещи, приведите салон в порядок.',
+  },
+  {
+    name: 'Комплектация',
+    impact: 'positive',
+    description:
+      'Дополнительные опции (навигация, кожаный салон, камера заднего вида) увеличивают стоимость.',
+    tip: 'Укажите все дополнительные опции при оценке - они учитываются в цене.',
+  },
+  {
+    name: 'История обслуживания',
+    impact: 'positive',
+    description:
+      'Наличие полной истории ТО и обслуживания у официального дилера повышает стоимость на 5-15%.',
+    tip: 'Сохраняйте все документы о ремонтах и обслуживании - они подтверждают уход за авто.',
+  },
+  {
+    name: 'Возраст автомобиля',
+    impact: 'negative',
+    description:
+      'С каждым годом автомобиль теряет в стоимости из-за естественной амортизации.',
+    tip: 'Чем новее автомобиль, тем выше его остаточная стоимость.',
+  },
+  {
+    name: 'Популярность марки',
+    impact: 'positive',
+    description:
+      'Популярные марки (Toyota, BMW, Mercedes) имеют лучшую ликвидность и сохраняют стоимость.',
+    tip: 'Популярные модели легче продать и они стоят дороже.',
+  },
+  {
+    name: 'Сезонность',
+    impact: 'neutral',
+    description:
+      'Весной и летом спрос на автомобили выше, что может немного повлиять на цену.',
+    tip: 'Учитывайте сезон при планировании продажи.',
+  },
+];
+
+const PriceFactors: React.FC = () => {
+  const getImpactIcon = (impact: string) => {
+    switch (impact) {
+      case 'positive':
+        return '📈';
+      case 'negative':
+        return '📉';
+      default:
+        return 'ℹ️';
+    }
+  };
+
+  const getImpactColor = (impact: string) => {
+    switch (impact) {
+      case 'positive':
+        return 'text-success-500';
+      case 'negative':
+        return 'text-error-500';
+      default:
+        return 'text-info-500';
+    }
+  };
+
+  return (
+    <Card className="p-6 m-4">
+      <div className="flex flex-row items-center mb-6">
+        <span className="text-2xl mr-3">ℹ️</span>
+        <h3 className="text-2xl font-bold text-neutral-900 flex-1">
+          Факторы, влияющие на стоимость автомобиля
+        </h3>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        {factors.map((factor, index) => (
+          <div key={index} className="border border-neutral-200 rounded-lg p-4 bg-white">
+            <div className="flex flex-row justify-between items-start mb-2">
+              <h4 className="text-base font-semibold text-neutral-900 flex-1 mr-2">{factor.name}</h4>
+              <span className={`text-xl ${getImpactColor(factor.impact)}`}>
+                {getImpactIcon(factor.impact)}
+              </span>
+            </div>
+            <p className="text-sm text-neutral-600 leading-5 mb-2">{factor.description}</p>
+            {factor.tip && (
+              <div className="bg-primary-50 border-l-4 border-primary-600 p-3 mt-2">
+                <p className="text-xs font-semibold text-info-800 leading-5">
+                  💡 Совет: {factor.tip}
+                </p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+};
+
+export default PriceFactors;

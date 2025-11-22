@@ -43,9 +43,9 @@ npm run check:seo
 
 Проверяет:
 - Наличие критичных изображений (og-image.png, icons, logo.png)
-- Наличие SEO файлов (robots.txt, sitemap.ts, manifest.ts)
-- Schema.org разметку в layout.tsx
-- Метаданные
+- Наличие SEO файлов (robots.txt, sitemap.xml в public/ или генерируемые сервером)
+- Schema.org разметку в компонентах SchemaMarkup
+- Метаданные в server/index.ts
 
 **Пример:**
 ```bash
@@ -127,8 +127,9 @@ npm install -g lighthouse
 ### Ошибки при проверке файлов
 
 Убедитесь, что все файлы существуют:
-- `app/robots.txt` или `app/robots.ts`
-- `app/sitemap.ts`
-- `app/manifest.ts`
-- `app/layout.tsx`
+- `public/robots.txt` (статический файл) или генерируется сервером
+- `public/sitemap.xml` (статический файл) или генерируется сервером
+- `public/index.html` (содержит метаданные и ссылки на манифест)
+- `server/index.ts` (SSR и метаданные)
+- Компоненты `SchemaMarkup` в `src/components/` для Schema.org разметки
 
