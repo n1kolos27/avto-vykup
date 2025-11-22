@@ -1,0 +1,10 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Card from './ui/Card';
+import OptimizedImage from './ui/OptimizedImage';
+const BlogCard = ({ post }) => {
+    const navigate = useNavigate();
+    return (_jsx(Card, { className: "p-0 overflow-hidden h-full", children: _jsxs("button", { onClick: () => navigate(`/blog/${post.slug}`), className: "flex flex-col h-full w-full text-left hover:opacity-90 transition-opacity", children: [_jsx("div", { className: "h-48 bg-primary-600 overflow-hidden", children: post.image ? (_jsx(OptimizedImage, { src: post.image, alt: `Изображение статьи: ${post.title}`, className: "w-full h-full object-cover", loading: "lazy" })) : (_jsx("div", { className: "w-full h-full bg-primary-600 dark:bg-primary-500 flex items-center justify-center", children: _jsx("span", { className: "text-5xl font-bold text-white/60", children: post.title.charAt(0) }) })) }), _jsxs("div", { className: "p-6 flex flex-col flex-1", children: [_jsxs("div", { className: "flex flex-row justify-between items-center mb-3", children: [_jsx("div", { className: "bg-primary-100 dark:bg-primary-900/30 px-2 py-1 rounded", children: _jsx("span", { className: "text-xs font-semibold text-primary-600 dark:text-primary-400", children: post.category }) }), _jsxs("div", { className: "flex flex-row items-center gap-1", children: [_jsx("span", { className: "text-sm", children: "\uD83D\uDCC5" }), _jsx("span", { className: "text-xs text-neutral-600 dark:text-neutral-400", children: post.date })] })] }), _jsx("h3", { className: "text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-3 leading-7", children: post.title }), _jsx("p", { className: "text-base text-neutral-600 dark:text-neutral-300 leading-6 mb-4 flex-1 line-clamp-3", children: post.excerpt }), _jsx("div", { className: "mt-auto", children: _jsx("span", { className: "text-base font-semibold text-primary-600 dark:text-primary-400", children: "\u0427\u0438\u0442\u0430\u0442\u044C \u0434\u0430\u043B\u0435\u0435 \u2192" }) })] })] }) }));
+};
+export default React.memo(BlogCard);

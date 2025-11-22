@@ -92,16 +92,16 @@ const CasesSection: React.FC = () => {
             {currentCase.description}
           </p>
 
-          <div className="flex flex-row flex-wrap gap-6 mb-6 pb-6 border-b border-neutral-200 dark:border-neutral-700">
-            <div className="flex-1 min-w-[150px]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6 pb-6 border-b border-neutral-200 dark:border-neutral-700">
+            <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-1">Результат</p>
               <p className="text-xl font-bold text-primary-600 dark:text-primary-400">{currentCase.result}</p>
             </div>
-            <div className="flex-1 min-w-[150px]">
+            <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-1">Время сделки</p>
               <p className="text-xl font-bold text-primary-600 dark:text-primary-400">{currentCase.time}</p>
             </div>
-            <div className="flex-1 min-w-[150px]">
+            <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-1">Клиент</p>
               <p className="text-xl font-bold text-primary-600 dark:text-primary-400">{currentCase.client}</p>
             </div>

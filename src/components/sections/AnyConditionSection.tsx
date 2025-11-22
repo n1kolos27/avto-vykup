@@ -40,9 +40,9 @@ const AnyConditionSection: React.FC = () => {
           <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6">
             Выкупаем автомобили в следующих состояниях:
           </h3>
-          <div className="flex flex-row flex-wrap gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {conditions.map((condition, index) => (
-              <div key={index} className="flex flex-row items-center flex-1 min-w-[45%] gap-3">
+              <div key={index} className="flex flex-row items-center gap-3">
                 <div className="w-6 h-6 rounded-full bg-primary-600 dark:bg-primary-500 flex items-center justify-center flex-shrink-0">
                   <span className="text-sm font-bold text-white">✓</span>
                 </div>

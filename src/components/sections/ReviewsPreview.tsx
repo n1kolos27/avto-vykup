@@ -42,9 +42,9 @@ const ReviewsPreview: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-row flex-wrap gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {reviews.map((review) => (
-            <Card key={review.id} className="flex-1 min-w-[250px] p-6">
+            <Card key={review.id} className="p-6 h-full">
               <div className="flex flex-row mb-3">
                 {[...Array(review.rating)].map((_, i) => (
                   <span key={i} className="text-xl">⭐</span>

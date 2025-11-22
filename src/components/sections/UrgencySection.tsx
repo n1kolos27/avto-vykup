@@ -75,14 +75,14 @@ const UrgencySection: React.FC = () => {
             Получите бесплатную оценку и дополнительную скидку при сделке сегодня
           </p>
 
-          <div className="flex flex-row flex-wrap gap-6 mb-8 justify-center">
-            <div className="flex-1 min-w-[160px] flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 max-w-[600px] mx-auto">
+            <div className="flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
               <span className="text-4xl mb-3">👥</span>
               <span className="text-3xl font-bold text-white mb-2">{slotsLeft}</span>
               <span className="text-sm text-white/85 text-center">Слотов осталось</span>
             </div>
 
-            <div className="flex-1 min-w-[160px] flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
+            <div className="flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
               <span className="text-4xl mb-3">⏱️</span>
               <span className="text-3xl font-bold text-white mb-2">
                 {String(timeLeft.hours).padStart(2, '0')}:
@@ -92,7 +92,7 @@ const UrgencySection: React.FC = () => {
               <span className="text-sm text-white/85 text-center">До конца акции</span>
             </div>
 
-            <div className="flex-1 min-w-[160px] flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
+            <div className="flex flex-col items-center bg-white/10 p-6 rounded-2xl border border-white/20">
               <span className="text-4xl mb-3">📞</span>
               <span className="text-3xl font-bold text-white mb-2">47+</span>
               <span className="text-sm text-white/85 text-center">Оценок сегодня</span>
@@ -119,13 +119,13 @@ const UrgencySection: React.FC = () => {
           </h3>
 
           <AnimatedSection animationType="stagger" delay={200}>
-            <div className="flex flex-row flex-wrap gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, index) => (
                 <AnimatedCard key={index} delay={index * 100}>
                   <Card
                     hover3D
                     variant="outlined"
-                    className="flex-1 min-w-[280px] bg-white/10 dark:bg-white/5 p-8 flex flex-col items-center border border-white/30 dark:border-white/20 transition-colors"
+                    className="bg-white/10 dark:bg-white/5 p-8 flex flex-col items-center border border-white/30 dark:border-white/20 transition-colors h-full"
                   >
                 <div className="w-[72px] h-[72px] rounded-full bg-white/20 dark:bg-white/10 flex items-center justify-center mb-5">
                   <span className="text-4xl">{feature.icon}</span>

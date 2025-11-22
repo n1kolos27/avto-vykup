@@ -33,10 +33,10 @@ const WhatCarsWeBuySection: React.FC = () => {
           </div>
         </AnimatedSection>
 
-        <div className="flex flex-row flex-wrap gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {categories.map((category, index) => (
             <AnimatedCard key={index} delay={index * 100}>
-              <Card hover3D className="flex-1 min-w-[300px] bg-primary-50 dark:bg-primary-900/30 p-6">
+              <Card hover3D className="bg-primary-50 dark:bg-primary-900/30 p-6 h-full">
               <div className="flex flex-row gap-4">
                 <div className="w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-500 flex items-center justify-center flex-shrink-0">
                   <span className="text-lg font-bold text-white">✓</span>

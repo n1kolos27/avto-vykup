@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
             onClick={() => navigate('/calculator')}
             size="lg"
             variant="secondary"
-            className="flex-1 min-w-[200px]"
+            className="min-w-[200px] flex-shrink-0"
           >
             Оценить авто онлайн — бесплатно
           </Button>
